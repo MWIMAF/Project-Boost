@@ -21,6 +21,7 @@ public class RocketController : MonoBehaviour
     {
         if(Input.GetKey(KeyCode.Space))
         {
+            print("pressed");
             rigidBody.AddForce(Vector3.up);
         }
 
