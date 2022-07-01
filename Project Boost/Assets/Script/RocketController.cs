@@ -5,10 +5,13 @@ using UnityEngine;
 public class RocketController : MonoBehaviour
 {
     Rigidbody rigidBody;
+    AudioSource audioSource;
+
     // Start is called before the first frame update
     void Start()
     {
         rigidBody = GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -20,9 +23,16 @@ public class RocketController : MonoBehaviour
     private void NewMethod()
     {
         if(Input.GetKey(KeyCode.Space))
-        {
-            print("pressed");
+        {            
             rigidBody.AddForce(Vector3.up);
+            if (!audioSource.isPlaying)
+            {
+                audioSource.Play();
+            }
+        }
+        else
+        {
+            audioSource.Stop();
         }
 
 
