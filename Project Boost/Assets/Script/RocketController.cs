@@ -7,8 +7,8 @@ public class RocketController : MonoBehaviour
     Rigidbody rigidBody;
     AudioSource audioSource;
 
-    public int speed = 75;
-    public int upSpeed = 450;
+    [SerializeField] float speed = 75f;
+    [SerializeField] float upSpeed = 450f;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +22,20 @@ public class RocketController : MonoBehaviour
     {
         Thrust();
         Rotate();
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        switch (collision.gameObject.tag)
+        {
+            case "Friendly":
+                Debug.Log("OK");
+                break;
+
+            case "Lava":
+                Debug.Log("Yep U'r dead");
+                break;
+        }
     }
     private void Thrust()
     {
@@ -42,14 +56,15 @@ public class RocketController : MonoBehaviour
     private void Rotate()
     {
         rigidBody.freezeRotation = true;
+        float RCthrust = speed*Time.deltaTime;
 
         if (Input.GetKey(KeyCode.A))
         {
-            transform.Rotate(Vector3.forward*speed*Time.deltaTime);
+            transform.Rotate(Vector3.forward*RCthrust);
         }
         else if (Input.GetKey(KeyCode.D))
         {
-            transform.Rotate(-Vector3.forward*speed*Time.deltaTime);
+            transform.Rotate(-Vector3.forward*RCthrust);
         }
         rigidBody.freezeRotation = false;
     }
