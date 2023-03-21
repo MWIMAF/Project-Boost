@@ -7,8 +7,8 @@ public class RocketController : MonoBehaviour
     Rigidbody rigidBody;
     AudioSource audioSource;
 
-    [SerializeField] float speed = 75f;
-    [SerializeField] float upSpeed = 450f;
+    [SerializeField] float speed = 175f;
+    [SerializeField] float upSpeed = 1000f;
 
     // Start is called before the first frame update
     void Start()
